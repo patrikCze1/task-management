@@ -1,0 +1,59 @@
+<script lang="ts" setup>
+import type { Task } from "~~/shared/types/task";
+
+const { task } = defineProps<{
+  task: Task;
+}>();
+
+defineEmits<{
+  toggle: [uuid: string];
+}>();
+
+const priorityClass = computed(() => {
+  switch (task.priority) {
+    case "high":
+      return "bg-red-100 text-red-700";
+    case "medium":
+      return "bg-yellow-100 text-yellow-700";
+    case "low":
+      return "bg-green-100 text-green-700";
+    default:
+      return "bg-gray-100 text-gray-600";
+  }
+});
+</script>
+
+<template>
+  <article
+    class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+    :class="{ 'opacity-60': task.completed }"
+  >
+    <div class="flex items-start justify-between gap-3">
+      <div class="flex items-start gap-3">
+        <input
+          type="checkbox"
+          :checked="task.completed"
+          class="mt-1 h-4 w-4 rounded border-gray-300 text-blue-600"
+          @change="$emit('toggle', task.uuid)"
+        />
+        <div>
+          <h2
+            class="text-sm font-medium text-gray-900"
+            :class="{ 'line-through text-gray-400': task.completed }"
+          >
+            {{ task.title }}
+          </h2>
+          <p v-if="task.dueDate" class="mt-1 text-xs text-gray-500">
+            Due {{ task.dueDate }}
+          </p>
+        </div>
+      </div>
+      <span
+        class="inline-flex shrink-0 items-center rounded-full px-2 py-0.5 text-xs font-medium"
+        :class="priorityClass"
+      >
+        {{ task.priority }}
+      </span>
+    </div>
+  </article>
+</template>
