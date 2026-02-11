@@ -3,3 +3,5 @@ export interface Project {
   name: string;
   image: string;
 }
+
+export type ProjectForm = Pick<Project, "name" | "image">;

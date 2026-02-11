@@ -1,27 +1,16 @@
 <script lang="ts" setup>
-import type { Task } from "~~/shared/types/task";
-
 const route = useRoute();
 
-const tasks: Task[] = [
-  {
-    uuid: "123",
-    title: "Task 1",
-    description: "Description 1",
-    dueDate: "2023-01-01",
-    priority: "high",
-    projectId: 1,
-    completed: false,
-  },
-];
+const { getProject } = useProjectStore();
+
+useHead({
+  title: "Project #" + route.params.id,
+});
+
+const project = getProject(route.params.id as string);
 </script>
 
 <template>
-  <h1>Project #{{ route.params.id }}</h1>
-
-  <div>
-    <TaskCard v-for="task in tasks" :key="task.uuid" :task />
-  </div>
+  <div v-if="!project">Not found</div>
+  <TaskHandler v-else :project />
 </template>
-
-<style></style>

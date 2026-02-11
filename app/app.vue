@@ -1,9 +1,4 @@
 <script lang="ts" setup>
-const navLinks = [
-  { to: "/", label: "Dashboard" },
-  { to: "/projects", label: "Projects" },
-];
-
 const sidebarOpen = ref(false);
 
 const isDark = ref(false);
@@ -57,18 +52,9 @@ function toggleTheme() {
       </div>
 
       <!-- Navigation -->
-      <nav class="flex-1 space-y-1 px-3 py-4">
-        <NuxtLink
-          v-for="link in navLinks"
-          :key="link.to"
-          :to="link.to"
-          class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-100"
-          active-class="!bg-blue-50 !text-blue-700 dark:!bg-blue-900/30 dark:!text-blue-400"
-          @click="sidebarOpen = false"
-        >
-          {{ link.label }}
-        </NuxtLink>
-      </nav>
+      <div class="flex-1 px-3 py-4">
+        <TheMenu @navigate="sidebarOpen = false" />
+      </div>
 
       <!-- Sidebar footer -->
       <!-- <div class="border-t border-gray-200 p-4 dark:border-gray-700">

@@ -4,6 +4,8 @@ export interface Task {
   description: string;
   dueDate: string;
   priority: string;
-  projectId: number;
+  projectId: string;
   completed: boolean;
 }
+
+export type TaskFormData = Omit<Task, "uuid" | "projectId">;

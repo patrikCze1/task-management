@@ -7,6 +7,7 @@ const { task } = defineProps<{
 
 defineEmits<{
   toggle: [uuid: string];
+  click: [task: Task];
 }>();
 
 const priorityClass = computed(() => {
@@ -25,8 +26,9 @@ const priorityClass = computed(() => {
 
 <template>
   <article
-    class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md dark:border-gray-700 dark:bg-gray-800"
+    class="cursor-pointer rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md dark:border-gray-700 dark:bg-gray-800"
     :class="{ 'opacity-60': task.completed }"
+    @click="$emit('click', task)"
   >
     <div class="flex items-start justify-between gap-3">
       <div class="flex items-start gap-3">
