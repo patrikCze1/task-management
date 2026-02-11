@@ -12,20 +12,20 @@ defineEmits<{
 const priorityClass = computed(() => {
   switch (task.priority) {
     case "high":
-      return "bg-red-100 text-red-700";
+      return "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400";
     case "medium":
-      return "bg-yellow-100 text-yellow-700";
+      return "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400";
     case "low":
-      return "bg-green-100 text-green-700";
+      return "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400";
     default:
-      return "bg-gray-100 text-gray-600";
+      return "bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400";
   }
 });
 </script>
 
 <template>
   <article
-    class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+    class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md dark:border-gray-700 dark:bg-gray-800"
     :class="{ 'opacity-60': task.completed }"
   >
     <div class="flex items-start justify-between gap-3">
@@ -33,17 +33,17 @@ const priorityClass = computed(() => {
         <input
           type="checkbox"
           :checked="task.completed"
-          class="mt-1 h-4 w-4 rounded border-gray-300 text-blue-600"
+          class="mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 dark:border-gray-600"
           @change="$emit('toggle', task.uuid)"
         />
         <div>
           <h2
-            class="text-sm font-medium text-gray-900"
-            :class="{ 'line-through text-gray-400': task.completed }"
+            class="text-sm font-medium text-gray-900 dark:text-gray-100"
+            :class="{ 'line-through text-gray-400 dark:text-gray-500': task.completed }"
           >
             {{ task.title }}
           </h2>
-          <p v-if="task.dueDate" class="mt-1 text-xs text-gray-500">
+          <p v-if="task.dueDate" class="mt-1 text-xs text-gray-500 dark:text-gray-400">
             Due {{ task.dueDate }}
           </p>
         </div>
