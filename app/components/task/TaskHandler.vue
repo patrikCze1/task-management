@@ -57,6 +57,7 @@ onMounted(() => {
           :key="task.uuid"
           :task
           @click="openForm"
+          @toggle="editTask({ ...task, completed: !task.completed })"
         />
         <button
           class="flex w-full items-center justify-center gap-2 rounded-lg border-2 border-dashed border-gray-300 px-4 py-3 text-sm font-medium text-gray-500 transition-colors hover:border-blue-400 hover:text-blue-600 dark:border-gray-600 dark:text-gray-400 dark:hover:border-blue-500 dark:hover:text-blue-400"

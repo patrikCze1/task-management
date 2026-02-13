@@ -2,6 +2,9 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-button {
+button,
+input[type="checkbox"],
+input[type="radio"],
+input[type="reset"] {
   cursor: pointer;
 }

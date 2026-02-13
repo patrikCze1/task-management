@@ -22,6 +22,14 @@ const priorityClass = computed(() => {
       return "bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400";
   }
 });
+
+const formatedDate = computed(() =>
+  new Intl.DateTimeFormat("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(new Date(task.dueDate)),
+);
 </script>
 
 <template>
@@ -36,17 +44,22 @@ const priorityClass = computed(() => {
           type="checkbox"
           :checked="task.completed"
           class="mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 dark:border-gray-600"
-          @change="$emit('toggle', task.uuid)"
+          @click.stop.prevent="$emit('toggle', task.uuid)"
         />
         <div>
           <h2
             class="text-sm font-medium text-gray-900 dark:text-gray-100"
-            :class="{ 'line-through text-gray-400 dark:text-gray-500': task.completed }"
+            :class="{
+              'line-through text-gray-400 dark:text-gray-500': task.completed,
+            }"
           >
             {{ task.title }}
           </h2>
-          <p v-if="task.dueDate" class="mt-1 text-xs text-gray-500 dark:text-gray-400">
-            Due {{ task.dueDate }}
+          <p
+            v-if="task.dueDate"
+            class="mt-1 text-xs text-gray-500 dark:text-gray-400"
+          >
+            Due {{ formatedDate }}
           </p>
         </div>
       </div>
