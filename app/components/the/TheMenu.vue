@@ -24,7 +24,7 @@ function openProjectForm() {
   showProjectForm.value = true;
 }
 
-function onProjectSubmit(data: { name: string; image: string }) {
+function onProjectSubmit(data: { name: string }) {
   createProject(data);
 }
 </script>

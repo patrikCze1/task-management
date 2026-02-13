@@ -7,7 +7,7 @@ export const useProjectStore = defineStore("projects", () => {
 
   function init() {
     projects.value = JSON.parse(localStorage.getItem("projects") ?? "[]");
-    tasks.value = JSON.parse(localStorage.getItem("projects") ?? "[]");
+    tasks.value = JSON.parse(localStorage.getItem("tasks") ?? "[]");
 
     initiliazed.value = true;
   }
