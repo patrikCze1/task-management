@@ -9,7 +9,7 @@ const { project } = defineProps<{
 const route = useRoute();
 const { projectTasks } = useProjectDetail(project.id);
 const { createTask, editTask, deleteTask } = useTaskCrud();
-const { completedFilter, priorityFilter, filteredTasks } =
+const { completedFilter, priorityFilter, sortBy, toggleSort, filteredTasks } =
   useTaskFilters(projectTasks);
 
 const initialized = shallowRef(false);
@@ -51,6 +51,8 @@ onMounted(() => {
     <TaskFilters
       v-model:completed="completedFilter"
       v-model:priority="priorityFilter"
+      :sort-by="sortBy"
+      @toggle-sort="toggleSort"
     />
 
     <div class="grid grid-cols-1 gap-4">
