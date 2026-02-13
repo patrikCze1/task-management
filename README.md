@@ -1,75 +1,85 @@
-# Nuxt Minimal Starter
+# Taskly
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A task management app built with Nuxt 4, Vue 3, Pinia, Tailwind CSS, and Zod.
+
+## Features
+
+- Create and manage projects
+- CRUD operations for tasks (title, description, due date, priority)
+- Form validation with Zod schemas
+- Filter tasks by status (all/active/completed) and priority
+- Dark mode with system preference detection
+- Custom error page
+
+## Tech Stack
+
+- **Framework:** Nuxt 4 / Vue 3
+- **State:** Pinia (localStorage persistence)
+- **Styling:** Tailwind CSS 4
+- **Validation:** Zod 4
+- **Testing:** Vitest (unit + Nuxt environment)
 
 ## Setup
 
-Make sure to install dependencies:
-
 ```bash
-# npm
-npm install
-
-# pnpm
 pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+## Development
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
 pnpm dev
+```
 
-# yarn
-yarn dev
+Starts the dev server on `http://localhost:3000`.
 
-# bun
-bun run dev
+## Testing
+
+```bash
+pnpm test
+```
+
+Run a specific test project:
+
+```bash
+pnpm test -- --project unit
+pnpm test -- --project nuxt
 ```
 
 ## Production
 
-Build the application for production:
+Build for production:
 
 ```bash
-# npm
-npm run build
-
-# pnpm
 pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
+Preview the production build:
 
 ```bash
-# npm
-npm run preview
-
-# pnpm
 pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Docker
+
+```bash
+docker build -t taskly .
+docker run -p 3000:3000 taskly
+```
+
+## Project Structure
+
+```
+app/
+  components/     # Vue components (base, input, project, task, the)
+  composables/    # Composables (useTaskCrud, useTaskFilters, useTaskValidation, etc.)
+  pages/          # Nuxt pages (index, projects/[id])
+  stores/         # Pinia stores (projectStore)
+shared/
+  enums/          # Enums (TaskPriorityEnum)
+  schemas/        # Zod validation schemas (task)
+  types/          # TypeScript type definitions (task, project, taskFilter)
+test/
+  unit/           # Unit tests (schemas)
+  nuxt/           # Nuxt environment tests (composables)
+```
