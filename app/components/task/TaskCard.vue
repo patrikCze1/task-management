@@ -40,12 +40,30 @@ const formatedDate = computed(() =>
   >
     <div class="flex items-start justify-between gap-3">
       <div class="flex items-start gap-3">
-        <input
-          type="checkbox"
-          :checked="task.completed"
-          class="mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 dark:border-gray-600"
-          @click.stop.prevent="$emit('toggle', task.uuid)"
-        />
+        <button
+          class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors"
+          :class="
+            task.completed
+              ? 'border-blue-600 bg-blue-600 dark:border-blue-500 dark:bg-blue-500'
+              : 'border-gray-300 hover:border-blue-400 dark:border-gray-600 dark:hover:border-blue-500'
+          "
+          @click.stop="$emit('toggle', task.uuid)"
+        >
+          <svg
+            v-if="task.completed"
+            class="h-3 w-3 text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            stroke-width="3"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+        </button>
         <div>
           <h2
             class="text-sm font-medium text-gray-900 dark:text-gray-100"

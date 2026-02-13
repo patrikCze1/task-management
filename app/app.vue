@@ -55,19 +55,6 @@ function toggleTheme() {
       <div class="flex-1 px-3 py-4">
         <TheMenu @navigate="sidebarOpen = false" />
       </div>
-
-      <!-- Sidebar footer -->
-      <!-- <div class="border-t border-gray-200 p-4 dark:border-gray-700">
-        <div class="flex items-center gap-3">
-          <div class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-xs font-medium text-gray-600 dark:bg-gray-700 dark:text-gray-300">
-            PM
-          </div>
-          <div class="text-sm">
-            <p class="font-medium text-gray-900 dark:text-gray-100">Project Manager</p>
-            <p class="text-xs text-gray-500 dark:text-gray-400">pm@taskly.app</p>
-          </div>
-        </div>
-      </div> -->
     </aside>
 
     <!-- Main content area -->

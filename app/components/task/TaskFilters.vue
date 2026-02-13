@@ -42,7 +42,7 @@ const btnInactive =
 </script>
 
 <template>
-  <div class="mb-4 flex flex-wrap items-center gap-4">
+  <section class="flex mb-4 flex-wrap items-center gap-4">
     <div class="flex items-center gap-1.5">
       <span class="mr-1 text-xs font-medium text-gray-500 dark:text-gray-400">
         Status
@@ -90,5 +90,5 @@ const btnInactive =
         {{ opt.label }}
       </button>
     </div>
-  </div>
+  </section>
 </template>
