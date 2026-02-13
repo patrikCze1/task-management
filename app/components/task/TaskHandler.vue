@@ -9,6 +9,8 @@ const { project } = defineProps<{
 const route = useRoute();
 const { projectTasks } = useProjectDetail(project.id);
 const { createTask, editTask, deleteTask } = useTaskCrud();
+const { completedFilter, priorityFilter, filteredTasks } =
+  useTaskFilters(projectTasks);
 
 const initialized = shallowRef(false);
 const showTaskForm = shallowRef(false);
@@ -46,6 +48,11 @@ onMounted(() => {
   <div>
     <h1 class="text-3xl font-bold mb-4">Project #{{ route.params.id }}</h1>
 
+    <TaskFilters
+      v-model:completed="completedFilter"
+      v-model:priority="priorityFilter"
+    />
+
     <div class="grid grid-cols-1 gap-4">
       <template v-if="!initialized">
         <TaskCardSkeleton v-for="i in 5" :key="i" />
@@ -53,7 +60,7 @@ onMounted(() => {
 
       <template v-else>
         <TaskCard
-          v-for="task in projectTasks"
+          v-for="task in filteredTasks"
           :key="task.uuid"
           :task
           @click="openForm"
